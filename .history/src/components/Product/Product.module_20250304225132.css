@@ -1,0 +1,26 @@
+.card_container{
+    width: 250px;
+    box-shadow: 0 0 10px rgba((0,0,0,0.2));
+padding: 10px;
+color: black;
+text-decoration: none;
+position: relative;
+}
+.card_container button:hover{
+    display: block;
+}
+.card_container img{
+padding: 10px;
+width: 100px;
+height: 100px;
+object-fit: contain;
+
+}
+.button{
+display: none;
+padding: 5px 10px;
+font-weight: 700;
+border: none;
+cursor: pointer;
+bgc
+}

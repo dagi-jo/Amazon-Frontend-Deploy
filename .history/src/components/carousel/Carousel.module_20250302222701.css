@@ -1,0 +1,9 @@
+.hero_img {
+    position: relative;
+
+}
+.hero_img::before{
+    content: "";
+    position: absolute;
+    bott 0px
+}

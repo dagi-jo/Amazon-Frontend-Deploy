@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+
+function ContextApI() {
+    // const {count, setCount} =useState(0);
+    const {state, dispatch} = useReducer(reducer,initialState, init);
+//*Reducer function
+    let Increase=(state, action)=>{
+        switch(action.type){
+            case 'Increase':
+            return { count: state.count+1};
+            case 'Decrease':
+            return { count: state.count-1}
+            case'Reset':
+            return { count: state.count+}
+        }
+     setCount=(count+1)
+       }
+       let Decrease=()=>{
+        setCount=(count-1)
+          }
+
+          let Reset=()=>{
+            setCount=(0)
+              }
+  return (
+    <>
+      <hl>{count}</hl>
+      <button onClick={()=>Increase()}>Increase</button>
+      <button onClick={()=>Decrease()}>Decrease</button>
+      <button onClick={()=>Reset()}>Reset</button>
+
+    </>
+  )
+}
+
+export default ContextApI
