@@ -13,12 +13,14 @@ function CarouselEffect() {
         showThumbs={false}
         >
             {
-             img.map((imageitemLink)=>{
-             <div key={imageitemLink.id} />
-             return <img src={imageitemLink} alt=''/>
-             }
+              img.map((imageitemLink)=>{
+                <div key={imageitemLink.id} />
+                return <img src={imageitemLink} alt=''/>
+                }
+   
+                )
 
-             )
+            
             }
       </Carousel>
       <div className={classes.hero_img}></div>

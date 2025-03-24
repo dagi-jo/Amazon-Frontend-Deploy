@@ -13,7 +13,7 @@ function Product() {
 axios.get('https://fakestoreapi.com/products/')
 .then((res)=>{
     setproducts(res.data)
-    console.log(res)
+    // console.log(res)
 
 }).catch((err)=>{
     console.log(err)

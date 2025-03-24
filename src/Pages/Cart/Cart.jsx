@@ -6,7 +6,7 @@ import CurrencyFormat from '../../components/CurrencyFormat/CurrencyFormat'
 import { Link } from 'react-router-dom'
 import classes from './Cart.module.css'
 import { Type } from '../../Utility/action.type'
-import { type } from '@testing-library/user-event/dist/type'
+// import { type } from '@testing-library/user-event/dist/type'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -18,6 +18,9 @@ function Cart() {
   },0)
   console.log(basket)
  const increment=(item)=>{
+  console.log("Incrementing item:", item);
+  debugger; // This will pause execution when the button is clicked
+
   dispatch({
   type:Type.ADD_TO_BASKET, item
   } )
@@ -40,16 +43,16 @@ const decrement=(id)=>{
           <hr/>
           {
             basket?.length===0?(<p>Opps ! No item in your cart</p>):(
-               basket?.map((item,i)=>{
-                return  <section className={classes.cart_product} >
+               basket?.map((item)=>{
+                return  <section key={item.id} className={classes.cart_product} >
                   <ProductCard 
-                key={i}
+                // key={i}
                 product={item}
                 renderDesc={true}
                 renderAdd={false}
                 flex={true}
                 />
-             <div className={classes.btn_container}>
+            <div className={classes.btn_container}>
                   <button className= {classes.btn} onClick={()=>increment(item)}> <IoIosArrowUp size= {20}/>
 
                   </button>

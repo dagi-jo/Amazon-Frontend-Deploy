@@ -5,22 +5,27 @@ import { SlLocationPin } from "react-icons/sl";
 import { FiShoppingCart } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import LowerHeader from "./LowerHeader"
-
 import classes from './Header.module.css'
 import { DataContext } from '../DataProvider/DataProvider';
+import {auth} from '../../Utility/firebase';
 
 
 
 function Header() {
-const [state, dispach] = useContext(DataContext);
-const basket = state?.basket ?? [];
-const totalItem = basket?.reduce((amount,item)=>{
-   return item.amount + amount 
+    const [{ basket, user }, dispatch] = useContext(DataContext); // ✅ Correct way
+
+// const [{ state, user }, dispatch] = useContext(DataContext);
+// const basket = state?.basket || [];
+const totalItem = basket.reduce((amount, item)=>{
+//    return item.amount + amount 
+   return (item.amount ?? 0) + amount; // Ensure amount is defined
+
 },0)
+// console.log("added Item  length to cart:", basket.length)
+// console.log("Item added to cart: ", basket);
+// console.log("Current state:", basket);
+// console.log("Total Items in Cart:", totalItem);
 
-
-console.log("added Item  length to cart:", basket.length)
-console.log("Item added to cart: ", basket);
 
   return (
     <section className={classes.fixed}>
@@ -50,7 +55,7 @@ console.log("Item added to cart: ", basket);
             </select>
             <input type='text' placeholder='search product'/>
             {/* icon */}
-            <FaSearch size={25}/>
+            <FaSearch size={38}/>
             </div>
             {/* other section */}
         <div className={classes.order_container}>
@@ -64,9 +69,22 @@ console.log("Item added to cart: ", basket);
                 </select>
                 </Link>
             {/* three component */}
-               <Link to='/auth'>
-                <p>Sign In</p>
-                <span>Account & Lists</span>
+               <Link to={!user && '/auth'}>
+               <div>
+                {
+                    user?(
+                    <>
+                    <p>Hello {user?.email?.split("@")[0]}</p>
+                    <span onClick={()=>auth.signOut()}> Sign Out</span>
+                    </>
+                    ):(
+                     <>
+                     <p>Hello, sign in</p>
+                     <span>Account & Lists</span>
+                     </>
+                    )
+                }
+                </div>
                </Link>
             {/* order */}
             <Link to='/orders'>
